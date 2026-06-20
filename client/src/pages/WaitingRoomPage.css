@@ -1,0 +1,538 @@
+/* ── Waiting Room – supports both Light and Dark themes ─────────────────────── */
+
+/* ── CSS Variables per mode ──────────────────────────────────────────────────── */
+.wr-light {
+  --wr-bg: #eef4fb;
+  --wr-topbar-bg: #ffffff;
+  --wr-topbar-border: rgba(59, 130, 196, 0.12);
+  --wr-hero-bg: linear-gradient(160deg, #f0f7ff 0%, #eef4fb 100%);
+  --wr-hero-flash-bg: rgba(42, 157, 111, 0.08);
+  --wr-divider: rgba(59, 130, 196, 0.12);
+  --wr-bottom-bg: #ffffff;
+  --wr-footer-bg: rgba(59, 130, 196, 0.05);
+  --wr-footer-border: rgba(59, 130, 196, 0.1);
+
+  --wr-brand-color: #1a2640;
+  --wr-clock-color: #4e617a;
+  --wr-conn-color: #7c91aa;
+
+  --wr-eyebrow-color: #7c91aa;
+  --wr-eyebrow-dot: #2a9d6f;
+  --wr-token-color: #1e4f8a;
+  --wr-name-color: #1a2640;
+  --wr-purpose-color: #3b82c4;
+  --wr-empty-color: rgba(26, 38, 64, 0.2);
+  --wr-no-token-sub: #7c91aa;
+
+  --wr-section-label: #7c91aa;
+  --wr-chip-bg: #ffffff;
+  --wr-chip-border: rgba(59, 130, 196, 0.2);
+  --wr-chip-num-color: #1a2640;
+  --wr-chip-name-color: #7c91aa;
+  --wr-chip-more-bg: rgba(59, 130, 196, 0.06);
+  --wr-empty-upcoming: #b0bec8;
+
+  --wr-wait-label: #7c91aa;
+  --wr-wait-value: #1a2640;
+  --wr-wait-unit: #4e617a;
+  --wr-wait-divider: rgba(59, 130, 196, 0.15);
+
+  --wr-footer-color: #7c91aa;
+  --wr-theme-btn: #4e617a;
+  --wr-theme-btn-hover-bg: rgba(59, 130, 196, 0.08);
+  --wr-dot-on: #2a9d6f;
+  --wr-dot-on-shadow: rgba(42, 157, 111, 0.25);
+  --wr-dot-off: #b0bec8;
+
+  --wr-token-shadow: rgba(30, 79, 138, 0.12);
+  --wr-flash-bg: rgba(42, 157, 111, 0.07);
+
+  --wr-insights-bg: rgba(59, 130, 196, 0.04);
+  --wr-insights-border: rgba(59, 130, 196, 0.1);
+  --wr-insights-title: #7c91aa;
+  --wr-insights-label: #7c91aa;
+  --wr-insights-value: #1a2640;
+}
+
+.wr-dark {
+  --wr-bg: #0f172a;
+  --wr-topbar-bg: rgba(30, 41, 59, 0.95);
+  --wr-topbar-border: rgba(255, 255, 255, 0.07);
+  --wr-hero-bg: linear-gradient(160deg, #0d2040 0%, #0f172a 100%);
+  --wr-hero-flash-bg: rgba(74, 222, 128, 0.06);
+  --wr-divider: rgba(255, 255, 255, 0.07);
+  --wr-bottom-bg: rgba(30, 41, 59, 0.5);
+  --wr-footer-bg: rgba(0, 0, 0, 0.2);
+  --wr-footer-border: rgba(255, 255, 255, 0.05);
+
+  --wr-brand-color: rgba(255, 255, 255, 0.85);
+  --wr-clock-color: rgba(255, 255, 255, 0.5);
+  --wr-conn-color: rgba(255, 255, 255, 0.4);
+
+  --wr-eyebrow-color: rgba(255, 255, 255, 0.4);
+  --wr-eyebrow-dot: #4ade80;
+  --wr-token-color: #60a5fa;
+  --wr-name-color: rgba(255, 255, 255, 0.85);
+  --wr-purpose-color: rgba(255, 255, 255, 0.45);
+  --wr-empty-color: rgba(255, 255, 255, 0.12);
+  --wr-no-token-sub: rgba(255, 255, 255, 0.25);
+
+  --wr-section-label: rgba(255, 255, 255, 0.3);
+  --wr-chip-bg: rgba(255, 255, 255, 0.05);
+  --wr-chip-border: rgba(255, 255, 255, 0.1);
+  --wr-chip-num-color: rgba(255, 255, 255, 0.85);
+  --wr-chip-name-color: rgba(255, 255, 255, 0.38);
+  --wr-chip-more-bg: rgba(255, 255, 255, 0.03);
+  --wr-empty-upcoming: rgba(255, 255, 255, 0.2);
+
+  --wr-wait-label: rgba(255, 255, 255, 0.3);
+  --wr-wait-value: rgba(255, 255, 255, 0.85);
+  --wr-wait-unit: rgba(255, 255, 255, 0.5);
+  --wr-wait-divider: rgba(255, 255, 255, 0.08);
+
+  --wr-footer-color: rgba(255, 255, 255, 0.22);
+  --wr-theme-btn: rgba(255, 255, 255, 0.45);
+  --wr-theme-btn-hover-bg: rgba(255, 255, 255, 0.08);
+  --wr-dot-on: #4ade80;
+  --wr-dot-on-shadow: rgba(74, 222, 128, 0.22);
+  --wr-dot-off: rgba(255, 255, 255, 0.25);
+
+  --wr-token-shadow: rgba(96, 165, 250, 0.2);
+  --wr-flash-bg: rgba(74, 222, 128, 0.06);
+
+  --wr-insights-bg: rgba(255, 255, 255, 0.03);
+  --wr-insights-border: rgba(255, 255, 255, 0.07);
+  --wr-insights-title: rgba(255, 255, 255, 0.3);
+  --wr-insights-label: rgba(255, 255, 255, 0.35);
+  --wr-insights-value: rgba(255, 255, 255, 0.75);
+}
+
+/* ── Root ────────────────────────────────────────────────────────────────────── */
+.wr-root {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  background: var(--wr-bg);
+  font-family: var(--font-body);
+  overflow: hidden;
+  transition: background 0.25s ease, color 0.25s ease;
+}
+
+/* ── Top bar ─────────────────────────────────────────────────────────────────── */
+.wr-topbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 16px 40px;
+  background: var(--wr-topbar-bg);
+  border-bottom: 1px solid var(--wr-topbar-border);
+  backdrop-filter: blur(8px);
+  gap: 16px;
+}
+
+.wr-brand {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  color: var(--wr-brand-color);
+}
+
+.wr-logo {
+  display: flex;
+  align-items: center;
+  color: var(--wr-token-color);
+}
+
+.wr-brand-name {
+  font-family: var(--font-display);
+  font-size: 1.375rem;
+  font-weight: 400;
+  letter-spacing: -0.01em;
+}
+
+.wr-clock {
+  font-size: 1.5rem;
+  font-weight: 300;
+  color: var(--wr-clock-color);
+  letter-spacing: 0.04em;
+  font-variant-numeric: tabular-nums;
+}
+
+.wr-topbar-right {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.wr-conn-status {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  font-size: 0.875rem;
+  color: var(--wr-conn-color);
+  font-weight: 500;
+}
+
+.wr-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+.wr-dot--on {
+  background: var(--wr-dot-on);
+  box-shadow: 0 0 0 3px var(--wr-dot-on-shadow);
+  animation: dotPulse 2s ease infinite;
+}
+
+.wr-dot--off {
+  background: var(--wr-dot-off);
+}
+
+@keyframes dotPulse {
+  0%, 100% { box-shadow: 0 0 0 2px var(--wr-dot-on-shadow); }
+  50% { box-shadow: 0 0 0 5px var(--wr-dot-on-shadow); }
+}
+
+.wr-theme-btn {
+  width: 32px;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: transparent;
+  border: none;
+  border-radius: 8px;
+  color: var(--wr-theme-btn);
+  cursor: pointer;
+  transition: background 0.15s ease, color 0.15s ease;
+}
+
+.wr-theme-btn:hover {
+  background: var(--wr-theme-btn-hover-bg);
+  color: var(--wr-token-color);
+}
+
+/* ── Loading ─────────────────────────────────────────────────────────────────── */
+.wr-loading {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.wr-spinner {
+  width: 48px;
+  height: 48px;
+  border: 3px solid var(--wr-divider);
+  border-top-color: var(--wr-token-color);
+  border-radius: 50%;
+  animation: spin 0.8s linear infinite;
+}
+
+/* ── Body ────────────────────────────────────────────────────────────────────── */
+.wr-body {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+/* ── Hero ────────────────────────────────────────────────────────────────────── */
+.wr-hero {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 48px 40px;
+  text-align: center;
+  background: var(--wr-hero-bg);
+  transition: background 0.4s ease;
+}
+
+.wr-hero--flash {
+  animation: tokenFlash 0.9s ease forwards;
+}
+
+@keyframes tokenFlash {
+  0% { background: var(--wr-hero-bg); }
+  20% { background: var(--wr-flash-bg); }
+  100% { background: var(--wr-hero-bg); }
+}
+
+.wr-eyebrow {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  font-size: 0.875rem;
+  font-weight: 700;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--wr-eyebrow-color);
+  margin-bottom: 24px;
+}
+
+.wr-eyebrow-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--wr-eyebrow-dot);
+  box-shadow: 0 0 0 3px color-mix(in srgb, var(--wr-eyebrow-dot) 25%, transparent);
+  animation: dotPulse 2s ease infinite;
+  flex-shrink: 0;
+}
+
+.wr-token-number {
+  font-family: var(--font-display);
+  font-size: clamp(5.5rem, 17vw, 12rem);
+  font-weight: 400;
+  line-height: 0.9;
+  letter-spacing: -0.03em;
+  color: var(--wr-token-color);
+  text-shadow: 0 0 80px var(--wr-token-shadow);
+  transition: color 0.3s ease, text-shadow 0.3s ease;
+}
+
+.wr-token-number--empty {
+  color: var(--wr-empty-color);
+  text-shadow: none;
+}
+
+.wr-patient-name {
+  font-size: clamp(1.375rem, 3.5vw, 2.5rem);
+  font-weight: 600;
+  color: var(--wr-name-color);
+  margin-top: 20px;
+  letter-spacing: -0.01em;
+  transition: color 0.3s ease;
+}
+
+.wr-patient-purpose {
+  font-size: clamp(0.875rem, 1.5vw, 1.125rem);
+  color: var(--wr-purpose-color);
+  margin-top: 8px;
+  font-weight: 500;
+  letter-spacing: 0.02em;
+}
+
+.wr-no-token {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+}
+
+.wr-no-token-sub {
+  font-size: 1.125rem;
+  color: var(--wr-no-token-sub);
+  font-weight: 400;
+}
+
+/* ── Divider ─────────────────────────────────────────────────────────────────── */
+.wr-divider {
+  height: 1px;
+  background: var(--wr-divider);
+  margin: 0 40px;
+}
+
+/* ── Bottom ──────────────────────────────────────────────────────────────────── */
+.wr-bottom {
+  display: flex;
+  gap: 48px;
+  padding: 28px 40px 20px;
+  align-items: flex-start;
+  background: var(--wr-bottom-bg);
+  transition: background 0.25s ease;
+}
+
+/* Upcoming tokens */
+.wr-upcoming {
+  flex: 1;
+}
+
+.wr-section-label {
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--wr-section-label);
+  margin-bottom: 14px;
+}
+
+.wr-tokens-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.wr-token-chip {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  padding: 14px 16px;
+  background: var(--wr-chip-bg);
+  border: 1px solid var(--wr-chip-border);
+  border-radius: var(--radius-md);
+  min-width: 72px;
+  transition: background 0.25s, border-color 0.25s;
+  animation: chipIn 0.3s ease;
+}
+
+@keyframes chipIn {
+  from { opacity: 0; transform: translateY(6px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.wr-chip-num {
+  font-family: var(--font-display);
+  font-size: 1.75rem;
+  font-weight: 400;
+  color: var(--wr-chip-num-color);
+  line-height: 1;
+  letter-spacing: -0.02em;
+  transition: color 0.25s;
+}
+
+.wr-chip-name {
+  font-size: 0.75rem;
+  font-weight: 500;
+  color: var(--wr-chip-name-color);
+  white-space: nowrap;
+  transition: color 0.25s;
+}
+
+.wr-token-chip--more {
+  background: var(--wr-chip-more-bg);
+  border-style: dashed;
+}
+
+.wr-empty-upcoming {
+  font-size: 1rem;
+  color: var(--wr-empty-upcoming);
+  font-style: italic;
+  padding: 12px 0;
+}
+
+/* Wait info */
+.wr-wait-info {
+  display: flex;
+  align-items: center;
+  gap: 32px;
+  flex-shrink: 0;
+}
+
+.wr-wait-divider {
+  width: 1px;
+  height: 50px;
+  background: var(--wr-wait-divider);
+}
+
+.wr-wait-item {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  text-align: right;
+}
+
+.wr-wait-label {
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--wr-wait-label);
+}
+
+.wr-wait-value {
+  font-family: var(--font-display);
+  font-size: 1.875rem;
+  font-weight: 400;
+  color: var(--wr-wait-value);
+  letter-spacing: -0.02em;
+  line-height: 1;
+  transition: color 0.25s;
+}
+
+.wr-wait-unit {
+  font-family: var(--font-body);
+  font-size: 1rem;
+  font-weight: 500;
+  color: var(--wr-wait-label);
+}
+
+/* ── Consultation Insights (secondary card) ─────────────────────────────────── */
+.wr-insights {
+  margin: 0 40px 20px;
+  padding: 14px 20px;
+  background: var(--wr-insights-bg);
+  border: 1px solid var(--wr-insights-border);
+  border-radius: var(--radius-md);
+  transition: background 0.25s, border-color 0.25s;
+}
+
+.wr-insights-title {
+  font-size: 0.6875rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--wr-insights-title);
+  margin-bottom: 10px;
+}
+
+.wr-insights-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px 32px;
+}
+
+.wr-insights-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.wr-insights-label {
+  font-size: 0.8125rem;
+  color: var(--wr-insights-label);
+  font-weight: 500;
+}
+
+.wr-insights-value {
+  font-size: 0.9375rem;
+  color: var(--wr-insights-value);
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+}
+
+/* ── Footer ──────────────────────────────────────────────────────────────────── */
+.wr-footer {
+  padding: 14px 40px;
+  text-align: center;
+  font-size: 0.875rem;
+  color: var(--wr-footer-color);
+  background: var(--wr-footer-bg);
+  letter-spacing: 0.03em;
+  border-top: 1px solid var(--wr-footer-border);
+  transition: background 0.25s, color 0.25s;
+}
+
+/* ── Animations ──────────────────────────────────────────────────────────────── */
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+/* ── Responsive ──────────────────────────────────────────────────────────────── */
+@media (max-width: 768px) {
+  .wr-topbar { padding: 14px 20px; }
+  .wr-clock { font-size: 1.125rem; }
+  .wr-hero { padding: 32px 20px; }
+  .wr-divider { margin: 0 20px; }
+  .wr-bottom { flex-direction: column; gap: 24px; padding: 20px; }
+  .wr-wait-info { flex-direction: row; width: 100%; justify-content: flex-start; }
+  .wr-wait-item { text-align: left; }
+  .wr-insights { margin: 0 20px 16px; }
+  .wr-insights-grid { flex-direction: column; gap: 8px; }
+  .wr-footer { padding: 12px 20px; }
+}

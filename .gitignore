@@ -1,0 +1,23 @@
+# dependencies
+node_modules
+
+# env
+.env
+.env.local
+
+# build
+dist
+build
+
+# logs
+*.log
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Vercel
+.vercel
+
+# IDE
+.vscode
