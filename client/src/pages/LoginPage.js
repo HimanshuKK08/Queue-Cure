@@ -12,7 +12,7 @@ export default function LoginPage() {
   const { login } = useAuth();
   const navigate = useNavigate();
 
-  console.log("LOGIN PAGE URL =", SERVER_URL);
+  // console.log("LOGIN PAGE URL =", SERVER_URL);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
