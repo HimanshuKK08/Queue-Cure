@@ -7,7 +7,10 @@ const app = express();
 const server = http.createServer(app);
 const io = new Server(server, {
   cors: {
-    origin: "*",
+    origin: [
+    "https://queue-cure-self.vercel.app",
+    "http://queue-cure-self.vercel.app"
+    ],
     methods: ["GET", "POST"],
   },
 });
