@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "../context/AuthContext";
 import "./LoginPage.css";
-const SERVER_URL = import.meta.env.VITE_SERVER_URL;
+const SERVER_URL = process.env.REACT_APP_SERVER_URL;
 
 export default function LoginPage() {
   const [hospitalId, setHospitalId] = useState("");
@@ -11,7 +11,7 @@ export default function LoginPage() {
   const [loading, setLoading] = useState(false);
   const { login } = useAuth();
   const navigate = useNavigate();
-  
+
   console.log("LOGIN PAGE URL =", SERVER_URL);
 
   const handleSubmit = async (e) => {
