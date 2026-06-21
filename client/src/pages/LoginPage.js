@@ -11,9 +11,12 @@ export default function LoginPage() {
   const [loading, setLoading] = useState(false);
   const { login } = useAuth();
   const navigate = useNavigate();
+  
+  console.log("LOGIN PAGE URL =", SERVER_URL);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+
     if (!hospitalId.trim() || !pin.trim()) {
       setError("Please enter your Hospital ID and PIN.");
       return;
