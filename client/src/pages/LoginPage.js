@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "../context/AuthContext";
 import "./LoginPage.css";
+const SERVER_URL = import.meta.env.VITE_SERVER_URL;
 
 export default function LoginPage() {
   const [hospitalId, setHospitalId] = useState("");
@@ -20,7 +21,7 @@ export default function LoginPage() {
     setError("");
     setLoading(true);
     try {
-      const res = await fetch("http://localhost:3001/api/auth/login", {
+      const res = await fetch(`${SERVER_URL}/api/auth/login`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ hospitalId: hospitalId.trim(), pin: pin.trim() }),
